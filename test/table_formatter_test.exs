@@ -2,7 +2,7 @@ defmodule TableFormatterTest do
   use ExUnit.Case
   import ExUnit.CaptureIO
 
-#  alias Issues.TableFormatter, as: TF
+  alias Issues.TableFormatter, as: TF
 
   defp simple_test_data!(rows, headers, widths) when rows >= 1 do
     unless length(headers) == length(widths) do
@@ -25,8 +25,8 @@ defmodule TableFormatterTest do
 
   test "split_into_columns" do
     headers = [:h1, :hd2, :header3]
-    table = simple_test_data!(2, headers, [2, 3, 1])
-    columns = split_into_columns(table, headers)
+    rows = simple_test_data!(2, headers, [2, 3, 1])
+    columns = TF.split_into_columns(rows, headers)
     assert length(columns) = length(headers)
     assert List.first(columns) == ["xx", "xx"]
     assert List.last(columns) == ["x", "x"]
