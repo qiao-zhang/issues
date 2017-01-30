@@ -4,27 +4,30 @@ defmodule TableFormatterTest do
 
 #  alias Issues.TableFormatter, as: TF
 
-  defp simple_test_data!(rows\\2, widths\\[2, 3, 1]) when rows >= 1 do
-    unless Enum.all?(widths, &(&1 >= 1)) do
-      raise ArgumentError, message: "All widths should be greater than 0"
+  defp simple_test_data!(rows, headers, widths) when rows >= 1 do
+    unless length(headers) == length(widths) do
+      raise ArgumentError,
+            message: "Number of headers and number of widths unmatch"
     end
-    row = for width <- widths, do: String.duplicate("x", width)
+    row = for {h, w} <- Enum.zip(headers, widths) do
+            {h, String.duplicate("x", w)}
+          end
     List.duplicate(row, rows)
   end
 
   test "simple_test_data" do
-  assert simple_test_data! ==
+  assert simple_test_data!(2, [:h1, :hd2, :header3], [2, 3, 1]) ==
     [
-      ["xx", "xxx", "x"],
-      ["xx", "xxx", "x"],
+      [h1: "xx", hd2: "xxx", header3: "x"],
+      [h1: "xx", hd2: "xxx", header3: "x"],
     ]
   end
 
-  test "split_into_columns" do
-    table = simple_test_data!()
-    columns = split_into_columns(table)
-    assert length(columns) = length(widths)
-    assert List.first(columns) == ["xx", "xx"]
-    assert List.last(columns) == ["x", "x"]
-  end
+#  test "split_into_columns" do
+#    table = simple_test_data!(2, [:h1, :hd2, :header3], [2, 3, 1])
+#    columns = split_into_columns(table)
+#    assert length(columns) = length(widths)
+#    assert List.first(columns) == ["xx", "xx"]
+#    assert List.last(columns) == ["x", "x"]
+#  end
 end
