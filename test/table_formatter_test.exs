@@ -54,12 +54,12 @@ defmodule TableFormatterTest do
 
   test "put header correctly" do
     output1 = capture_io fn ->
-      TF.put_one_row([:h1, :hd2, :header3], "~-2s | ~-3s | ~-7s~n")
+      TF.put_headers([:h1, :hd2, :header3], "~-2s | ~-3s | ~-7s~n")
     end
     assert output1 == "h1 | hd2 | header3\n"
 
     output2 = capture_io fn ->
-      TF.put_one_row([:h1, :hd2, :h3], "~-3s | ~-4s | ~-4s~n")
+      TF.put_headers([:h1, :hd2, :h3], "~-3s | ~-4s | ~-4s~n")
     end
     assert output2 == "h1  | hd2  | h3  \n"
   end
