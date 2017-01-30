@@ -13,8 +13,8 @@ defmodule Issues.TableFormatter do
     end
   end
 
-  def separator(widths) do
-    map_join(widths, "-+-", &(String.duplicate("-", &1)))
+  def put_separator(widths) do
+    IO.puts map_join(widths, "-+-", &(String.duplicate("-", &1)))
   end
 
   def format_for(widths) do

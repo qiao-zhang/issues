@@ -45,10 +45,10 @@ defmodule TableFormatterTest do
     assert TF.format_for([5, 4, 3]) == "~-5s | ~-4s | ~-3s~n"
   end
 
-  test "get separator correctly" do
+  test "put separator correctly" do
     output = capture_io fn ->
       TF.put_separator([2, 3, 4])
     end
-    assert output == "---+-----+-----"
+    assert output == "---+-----+-----\n"
   end
 end
