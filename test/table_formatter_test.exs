@@ -27,7 +27,7 @@ defmodule TableFormatterTest do
     headers = [:h1, :hd2, :header3]
     rows = simple_test_data!(2, headers, [2, 3, 1])
     columns = TF.split_into_columns(rows, headers)
-    assert length(columns) = length(headers)
+    assert length(columns) == length(headers)
     assert List.first(columns) == ["xx", "xx"]
     assert List.last(columns) == ["x", "x"]
   end
