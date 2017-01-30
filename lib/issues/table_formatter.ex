@@ -1,5 +1,5 @@
 defmodule Issues.TableFormatter do
-  import Enum, only: [ zip: 2, map: 2, max: 1 ]
+  import Enum, only: [ zip: 2, map: 2, max: 1, map_join: 3 ]
   @moduledoc false
   def split_into_columns(rows, headers) do
     for header <- headers do
@@ -11,6 +11,14 @@ defmodule Issues.TableFormatter do
     for {c, h} <- zip(columns, headers) do
       [to_string(h) | c] |> map(&String.length/1) |> max
     end
+  end
+
+  def separator(widths) do
+    map_join(widths, "-+-", &(String.duplicate("-", &1)))
+  end
+
+  def format_for(widths) do
+    map_join(widths, " | ", &("~-#{&1}s")) <> "~n"
   end
 
   defp printable(str) when is_binary(str), do: str
