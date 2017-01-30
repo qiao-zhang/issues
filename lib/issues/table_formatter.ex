@@ -21,8 +21,8 @@ defmodule Issues.TableFormatter do
     map_join(widths, " | ", &("~-#{&1}s")) <> "~n"
   end
 
-  def put_one_row(headers, format) do
-    :io.format(format, map(headers, &to_string/1))
+  def put_one_row(columns, format) do
+    :io.format(format, map(columns, &to_string/1))
   end
 
   defp printable(str) when is_binary(str), do: str
