@@ -20,11 +20,11 @@ defmodule TableFormatterTest do
     ]
   end
 
-#  test "split_into_columns" do
-#    table = simple_test_data()
-#    columns = split_into_columns(table)
-#    assert length(columns) = length(widths)
-#    assert List.first(columns) == ["xx", "xx", "xx"]
-#    assert List.last(columns) == ["x", "x", "x"]
-#  end
+  test "split_into_columns" do
+    table = simple_test_data!()
+    columns = split_into_columns(table)
+    assert length(columns) = length(widths)
+    assert List.first(columns) == ["xx", "xx"]
+    assert List.last(columns) == ["x", "x"]
+  end
 end
