@@ -51,4 +51,11 @@ defmodule TableFormatterTest do
     end
     assert output == "---+-----+-----\n"
   end
+
+  test "put_header" do
+    output = capture_io fn ->
+      TF.put_headers([:h1, hd2, header3])
+    end
+    assert output == "h1 | hd2 | header3\n"
+  end
 end
