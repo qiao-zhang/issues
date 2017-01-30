@@ -39,4 +39,13 @@ defmodule TableFormatterTest do
     widths = TF.widths_of(columns, headers)
     assert widths == [7, 4, 5]
   end
+
+  test "get format correctly" do
+    assert TF.format_for([3, 7, 8, 2]) == "~-3s | ~-7s | ~-8s | ~-2s~n"
+    assert TF.format_for([5, 4, 3]) == "~-5s | ~-4s | ~-3s~n"
+  end
+
+  test "get separator correctly" do
+    assert TF.separator([2, 3, 4]) == "---+-----+-----"
+  end
 end
