@@ -31,4 +31,12 @@ defmodule TableFormatterTest do
     assert List.first(columns) == ["xx", "xx"]
     assert List.last(columns) == ["x", "x"]
   end
+
+  test "get table widths correctly" do
+    headers = [:header1, :h2, :hdr3]
+    rows = simple_test_data!(1, headers, [2, 4, 5])
+    columns = TF.split_into_columns(rows, headers)
+    widths = widths_of(columns, headers)
+    assert widths == [7, 4, 5]
+  end
 end
