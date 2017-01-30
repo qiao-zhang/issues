@@ -63,4 +63,19 @@ defmodule TableFormatterTest do
     end
     assert output2 == "h1  | hd2  | h3  \n"
   end
+
+  test "print table correctly" do
+    headers = [:h1, :hd2, :header3, :h4]
+    rows = simple_test_data!(3, headers, [3, 2, 4, 1])
+    output = capture_io fn ->
+      TF.print_table(rows, headers)
+    end
+    assert output = """
+    h1  | hd2 | header3 | h4
+    ----+-----+---------+---
+    xxx | xx  | xxxx    | x
+    xxx | xx  | xxxx    | x
+    xxx | xx  | xxxx    | x
+    """
+  end
 end
