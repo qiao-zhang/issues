@@ -23,11 +23,12 @@ defmodule TableFormatterTest do
     ]
   end
 
-#  test "split_into_columns" do
-#    table = simple_test_data!(2, [:h1, :hd2, :header3], [2, 3, 1])
-#    columns = split_into_columns(table)
-#    assert length(columns) = length(widths)
-#    assert List.first(columns) == ["xx", "xx"]
-#    assert List.last(columns) == ["x", "x"]
-#  end
+  test "split_into_columns" do
+    headers = [:h1, :hd2, :header3]
+    table = simple_test_data!(2, headers, [2, 3, 1])
+    columns = split_into_columns(table, headers)
+    assert length(columns) = length(headers)
+    assert List.first(columns) == ["xx", "xx"]
+    assert List.last(columns) == ["x", "x"]
+  end
 end
